@@ -32,7 +32,7 @@ app.post("/send-sms", async (req, res) => {
     const message = await client.messages.create({
       body: `\nHello EYB \nA Client is trying to reach out, please contact the client at: \nMob No/Email : ${contact}`,
       from: process.env.TWILIO_PHONE_NUMBER,
-      to: process.env.RECEIVER_PHONE_NUMBER,
+      to: `+91${contact}`,
     });
 
     res.json({ success: true, message: "SMS Sent!", sid: message.sid });
@@ -61,8 +61,8 @@ app.post("/send-email", async (req, res) => {
     res.json({ success: true, message: "Email sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).json({ success: false, message: "Failed to send email" });
+    res.status(500).json({ success: false, message: "Failed to send email", error: error?.message });
   }
 });
 
-app.listen(process.env.PORT, () => console.log("Server running on port 8000"));
+app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
