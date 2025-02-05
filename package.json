@@ -16,5 +16,6 @@
     "express": "^4.21.2",
     "nodemailer": "^6.10.0",
     "twilio": "^5.4.2"
-  }
+  },
+  "proxy":"https://www.eyb.co.in"
 }
